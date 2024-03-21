@@ -165,6 +165,21 @@ if (CUDA_FOUND)
     src/yolo_object_detector_nodelet.cpp
   )
 
+  # Add executable for bool_pub.cpp
+  add_executable(bool_pub src/bool_pub.cpp)
+
+  target_include_directories(bool_pub PRIVATE
+    ${catkin_INCLUDE_DIRS}
+    ${DARKNET_PATH}/include
+  )
+
+  # Link the executable with necessary libraries
+  target_link_libraries(bool_pub
+    ${catkin_LIBRARIES}
+    ${PROJECT_NAME}_lib
+  )
+
+
 else()
 
   add_library(${PROJECT_NAME}_lib
